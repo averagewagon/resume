@@ -1,6 +1,8 @@
-# Jonathan Hendrickson's resume.md
+# Jonathan Hendrickson's Resume
 
-This is a fork of mikepqr's `resume.md` containing my personal resume, hosted at [jhendrickson.dev](https://jhendrickson.dev).
+My personal resume, hosted at [jhendrickson.dev](https://jhendrickson.dev).
+
+The resume.md, style.css, and resume.py files are an adaptation of [mikepqr/resume.md](https://github.com/mikepqr/resume.md), tuned to meet my requirements.
 
 ## Prerequisites
 
@@ -8,23 +10,6 @@ This is a fork of mikepqr's `resume.md` containing my personal resume, hosted at
 - [python-markdown](https://python-markdown.github.io/) (`pip install
 markdown`)
 - Optional, required for PDF output: Google Chrome or Chromium
-
-## Usage
-
-1.  Download [resume.py](resume.py), [resume.md](resume.md) and
-    [resume.css](resume.css) (or make a copy of this repository by [using the
-    template](https://github.com/mikepqr/resume.md/generate), forking, or
-    cloning).
-
-2.  Edit [resume.md](resume.md) (the placeholder text is taken with thanks from
-    the [JSON Resume Project](https://jsonresume.org/themes/))
-
-3.  Run `python3 resume.py` to build resume.html and resume.pdf.
-
-    - Use `--no-html` or `--no-pdf` to disable HTML or PDF output.
-
-    - Use `--chrome-path=/path/to/chrome` if resume.py cannot find your Chrome
-      or Chromium executable.
 
 ## Customization
 

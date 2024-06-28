@@ -1,222 +1,148 @@
 #!/usr/bin/env python3
 import argparse
 import base64
-import itertools
-import logging
 import os
 import re
-import shutil
 import subprocess
-import sys
 import tempfile
+from typing import List, Optional
 
 import markdown
 
-preamble = """\
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<title>{title}</title>
-<style>
-{css}
-</style>
-</head>
-<body>
-<div id="resume">
-"""
 
-postamble = """\
-</div>
-</body>
-</html>
-"""
+def guess_chrome_path() -> List[str]:
+    """
+    Attempt to detect the path for Google Chrome or Chromium installed via standard locations or Flatpak.
+    Raises FileNotFoundError if no installation is found.
+    """
+    common_paths = [
+        "/usr/bin/google-chrome",
+        "/usr/bin/google-chrome-stable",
+        "/usr/bin/google-chrome-beta",
+        "/usr/bin/google-chrome-unstable",
+        "/usr/bin/chromium",
+        "/usr/bin/chromium-browser",
+        "/usr/local/bin/google-chrome",
+        "/usr/local/bin/google-chrome-stable",
+        "/usr/local/bin/google-chrome-beta",
+        "/usr/local/bin/google-chrome-unstable",
+        "/usr/local/bin/chromium",
+        "/usr/local/bin/chromium-browser",
+        "/opt/google/chrome/chrome",
+        "/opt/google/chrome-beta/chrome",
+        "/opt/google/chrome-unstable/chrome",
+        "/snap/bin/chromium",
+        "/snap/bin/google-chrome",
+        "/snap/bin/google-chrome-stable",
+        "/snap/bin/google-chrome-beta",
+        "/snap/bin/google-chrome-unstable",
+    ]
+    for path in common_paths:
+        if os.path.isfile(path) and os.access(path, os.X_OK):
+            return [path]
 
-CHROME_GUESSES_MACOS = (
-    "/Applications/Chromium.app/Contents/MacOS/Chromium",
-    "/Applications/Google Chrome Canary.app/Contents/MacOS/Google Chrome Canary",
-    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome",
-)
+    try:
+        flatpak_output = subprocess.run(
+            ["flatpak", "list"], capture_output=True, text=True
+        ).stdout
+        if "com.google.Chrome" in flatpak_output:
+            return ["flatpak", "run", "com.google.Chrome"]
+        elif "org.chromium.Chromium" in flatpak_output:
+            return ["flatpak", "run", "org.chromium.Chromium"]
+    except FileNotFoundError:
+        pass
 
-# https://stackoverflow.com/a/40674915/409879
-CHROME_GUESSES_WINDOWS = (
-    # Windows 10
-    os.path.expandvars(r"%ProgramFiles(x86)%\Google\Chrome\Application\chrome.exe"),
-    os.path.expandvars(r"%ProgramFiles%\Google\Chrome\Application\chrome.exe"),
-    os.path.expandvars(r"%LocalAppData%\Google\Chrome\Application\chrome.exe"),
-    # Windows 7
-    r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe",
-    r"C:\Program Files\Google\Chrome\Application\chrome.exe",
-    # Vista
-    r"C:\Users\UserName\AppDataLocal\Google\Chrome",
-    # XP
-    r"C:\Documents and Settings\UserName\Local Settings\Application Data\Google\Chrome",
-)
-
-# https://unix.stackexchange.com/a/439956/20079
-CHROME_GUESSES_LINUX = [
-    "/".join((path, executable))
-    for path, executable in itertools.product(
-        (
-            "/usr/local/sbin",
-            "/usr/local/bin",
-            "/usr/sbin",
-            "/usr/bin",
-            "/sbin",
-            "/bin",
-            "/opt/google/chrome",
-        ),
-        ("google-chrome", "chrome", "chromium", "chromium-browser"),
+    raise FileNotFoundError(
+        "Chrome or Chromium browser not found. Please ensure it is installed."
     )
-]
-
-
-def guess_chrome_path() -> str:
-    if sys.platform == "darwin":
-        guesses = CHROME_GUESSES_MACOS
-    elif sys.platform == "win32":
-        guesses = CHROME_GUESSES_WINDOWS
-    else:
-        guesses = CHROME_GUESSES_LINUX
-    for guess in guesses:
-        if os.path.exists(guess):
-            logging.info("Found Chrome or Chromium at " + guess)
-            return guess
-    raise ValueError("Could not find Chrome. Please set CHROME_PATH.")
 
 
 def title(md: str) -> str:
     """
-    Return the contents of the first markdown heading in md, which we
-    assume to be the title of the document.
+    Extracts the title from the first Markdown heading.
     """
     for line in md.splitlines():
-        if re.match("^#[^#]", line):  # starts with exactly one '#'
-            return line.lstrip("#").strip()
-    raise ValueError(
-        "Cannot find any lines that look like markdown h1 headings to use as the title"
-    )
+        if line.startswith("# ") and not line.startswith("##"):
+            return line.strip("# ").strip()
+    raise ValueError("No suitable Markdown h1 heading found for title.")
 
 
-def make_html(md: str, prefix: str = "resume") -> str:
+def make_html(md: str, css_file: str) -> str:
     """
-    Compile md to HTML and prepend/append preamble/postamble.
-
-    Insert <prefix>.css if it exists.
+    Converts Markdown content to HTML format, embedding the specified CSS.
     """
     try:
-        with open(prefix + ".css") as cssfp:
+        with open(css_file) as cssfp:
             css = cssfp.read()
     except FileNotFoundError:
-        print(prefix + ".css not found. Output will by unstyled.")
         css = ""
-    return "".join(
-        (
-            preamble.format(title=title(md), css=css),
-            markdown.markdown(md, extensions=["smarty", "abbr"]),
-            postamble,
-        )
-    )
+        print(f"{css_file} not found. Output will be unstyled.")
+
+    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)}</title><style>{css}</style></head><body><div id='resume'>"
+    postamble = "</div></body></html>"
+    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
 
 
-def write_pdf(html: str, prefix: str = "resume", chrome: str = "") -> None:
+def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> None:
     """
-    Write html to prefix.pdf
+    Generates a PDF file from HTML content using Chrome or Chromium.
     """
-    chrome = chrome or guess_chrome_path()
-    html64 = base64.b64encode(html.encode("utf-8"))
-    options = [
-        "--no-sandbox",
-        "--headless",
-        "--print-to-pdf-no-header",
-        # Keep both versions of this option for backwards compatibility
-        # https://developer.chrome.com/docs/chromium/new-headless.
-        "--no-pdf-header-footer",
-        "--enable-logging=stderr",
-        "--log-level=2",
-        "--in-process-gpu",
-        "--disable-gpu",
-    ]
-
-    # Ideally we'd use tempfile.TemporaryDirectory here. We can't because
-    # attempts to delete the tmpdir fail on Windows because Chrome creates a
-    # file the python process does not have permission to delete. See
-    # https://github.com/puppeteer/puppeteer/issues/2778,
-    # https://github.com/puppeteer/puppeteer/issues/298, and
-    # https://bugs.python.org/issue26660. If we ever drop Python 3.9 support we
-    # can use TemporaryDirectory with ignore_cleanup_errors=True as a context
-    # manager.
-    tmpdir = tempfile.mkdtemp(prefix="resume.md_")
-    options.append(f"--crash-dumps-dir={tmpdir}")
-    options.append(f"--user-data-dir={tmpdir}")
-
-    try:
-        subprocess.run(
-            [
-                chrome,
-                *options,
-                f"--print-to-pdf={prefix}.pdf",
-                "data:text/html;base64," + html64.decode("utf-8"),
-            ],
-            check=True,
-        )
-        logging.info(f"Wrote {prefix}.pdf")
-    except subprocess.CalledProcessError as exc:
-        if exc.returncode == -6:
-            logging.warning(
-                "Chrome died with <Signals.SIGABRT: 6> "
-                f"but you may find {prefix}.pdf was created successfully."
-            )
-        else:
-            raise exc
-    finally:
-        shutil.rmtree(tmpdir, ignore_errors=True)
-        if os.path.isdir(tmpdir):
-            logging.debug(f"Could not delete {tmpdir}")
+    chrome_command = chrome_path.split() if chrome_path else guess_chrome_path()
+    html64 = base64.b64encode(html.encode("utf-8")).decode("utf-8")
+    with tempfile.TemporaryDirectory() as tmpdir:
+        options = [
+            "--no-sandbox",
+            "--headless",
+            "--print-to-pdf-no-header",
+            "--no-pdf-header-footer",
+            "--enable-logging=stderr",
+            "--log-level=2",
+            "--in-process-gpu",
+            "--disable-gpu",
+            f"--crash-dumps-dir={tmpdir}",
+            f"--user-data-dir={tmpdir}",
+            f"--print-to-pdf={output_pdf}",
+            f"data:text/html;base64,{html64}",
+        ]
+        subprocess.run(chrome_command + options, check=True)
+        print(f"Wrote {output_pdf}")
 
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument(
-        "file",
-        help="markdown input file [resume.md]",
+        "--input-md",
         default="resume.md",
-        nargs="?",
+        help="Markdown input file (default: resume.md)",
     )
     parser.add_argument(
-        "--no-html",
-        help="Do not write html output",
-        action="store_true",
+        "--input-css",
+        default="style.css",
+        help="CSS input file for styling (default: style.css)",
     )
     parser.add_argument(
-        "--no-pdf",
-        help="Do not write pdf output",
-        action="store_true",
+        "--output-html",
+        default="index.html",
+        help="HTML output file (default: index.html)",
     )
     parser.add_argument(
-        "--chrome-path",
-        help="Path to Chrome or Chromium executable",
+        "--output-pdf",
+        default="Jonathan_Hendrickson_resume.pdf",
+        help="PDF output file (default: Jonathan_Hendrickson_resume.pdf)",
     )
-    parser.add_argument("-q", "--quiet", action="store_true")
-    parser.add_argument("--debug", action="store_true")
+    parser.add_argument(
+        "--chrome-path", help="Path to Chrome or Chromium executable for PDF generation"
+    )
+
     args = parser.parse_args()
 
-    if args.quiet:
-        logging.basicConfig(level=logging.WARN, format="%(message)s")
-    elif args.debug:
-        logging.basicConfig(level=logging.DEBUG, format="%(message)s")
-    else:
-        logging.basicConfig(level=logging.INFO, format="%(message)s")
+    with open(args.input_md, encoding="utf-8") as mdfp:
+        md_content = mdfp.read()
 
-    prefix, _ = os.path.splitext(os.path.abspath(args.file))
+    html_content = make_html(md_content, args.input_css)
 
-    with open(args.file, encoding="utf-8") as mdfp:
-        md = mdfp.read()
-    html = make_html(md, prefix=prefix)
+    with open(args.output_html, "w", encoding="utf-8") as htmlfp:
+        htmlfp.write(html_content)
 
-    if not args.no_html:
-        with open(prefix + ".html", "w", encoding="utf-8") as htmlfp:
-            htmlfp.write(html)
-            logging.info(f"Wrote {htmlfp.name}")
-
-    if not args.no_pdf:
-        write_pdf(html, prefix=prefix, chrome=args.chrome_path)
+    if args.output_pdf:
+        write_pdf(html_content, args.output_pdf, args.chrome_path)
