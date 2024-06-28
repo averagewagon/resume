@@ -78,7 +78,7 @@ def make_html(md: str, css_file: str) -> str:
         css = ""
         print(f"{css_file} not found. Output will be unstyled.")
 
-    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)}</title><style>{css}</style></head><body><div id='resume'>"
+    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)} - Resume</title><style>{css}</style></head><body><div id='resume'>"
     postamble = "</div></body></html>"
     return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
 
