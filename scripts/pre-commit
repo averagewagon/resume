@@ -22,7 +22,7 @@ git add index.html
 git stash pop -q
 
 # Resolve any conflicts by resetting generated files to HEAD
-git checkout HEAD -- Jonathan_Hendrickson_resume.pdf
-git checkout HEAD -- index.html
+git checkout --ours Jonathan_Hendrickson_resume.pdf
+git checkout --ours index.html
 
 exit 0
