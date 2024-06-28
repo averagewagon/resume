@@ -4,7 +4,7 @@
 git stash -k -u -q
 
 # Run the resume generator script
-python3 "$(git rev-parse --show-toplevel || true)/generator.py"
+python3 "$(git rev-parse --show-toplevel || true)/generator.py" "--release"
 
 # Check the exit status of the script
 if [ $? -ne 0 ]; then
@@ -20,9 +20,5 @@ git add docs/index.html
 
 # Restore the stashed changes
 git stash pop -q
-
-# Resolve any conflicts by resetting generated files to HEAD
-git restore --staged docs/Jonathan_Hendrickson_resume.pdf
-git restore --staged docs/index.html
 
 exit 0

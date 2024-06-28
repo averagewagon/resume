@@ -186,6 +186,12 @@ def print_warning(message: str) -> None:
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
+
+    parser.add_argument(
+        "--release",
+        action="store_true",
+        help="If specified, output files will be built in the docs/ folder. Otherwise, they will go in the build/ folder.",
+    )
     parser.add_argument(
         "--input-md",
         default="resume.md",
@@ -197,36 +203,42 @@ if __name__ == "__main__":
         help="CSS input file for styling (default: style.css)",
     )
     parser.add_argument(
+        "--input-dictionary",
+        default="dictionary.txt",
+        help="File containing custom dictionary words to ignore (default: dictionary.txt)",
+    )
+    parser.add_argument(
         "--output-html",
-        default="docs/index.html",
-        help="HTML output file (default: index.html)",
+        default="index.html",
+        help="HTML output file name (default: index.html)",
     )
     parser.add_argument(
         "--output-pdf",
-        default="docs/Jonathan_Hendrickson_resume.pdf",
-        help="PDF output file (default: Jonathan_Hendrickson_resume.pdf)",
+        default="Jonathan_Hendrickson_resume.pdf",
+        help="PDF output file name (default: Jonathan_Hendrickson_resume.pdf)",
     )
     parser.add_argument(
         "--chrome-path", help="Path to Chrome or Chromium executable for PDF generation"
     )
-    parser.add_argument(
-        "--custom-dict",
-        default="dictionary.txt",
-        help="File containing custom dictionary words to ignore (default: dictionary.txt)",
-    )
 
     args = parser.parse_args()
+
+    output_dir = "docs" if args.release else "build"
+    output_html = os.path.join(output_dir, args.output_html)
+    output_pdf = os.path.join(output_dir, args.output_pdf)
 
     with open(args.input_md, encoding="utf-8") as mdfp:
         md_content = mdfp.read()
 
     # Check for spelling errors in the Markdown content
-    check_spelling(md_content, args.custom_dict)
+    check_spelling(md_content, args.input_dictionary)
 
     html_content = make_html(md_content, args.input_css)
 
-    with open(args.output_html, "w", encoding="utf-8") as htmlfp:
+    os.makedirs(output_dir, exist_ok=True)
+
+    with open(output_html, "w", encoding="utf-8") as htmlfp:
         htmlfp.write(html_content)
 
     if args.output_pdf:
-        write_pdf(html_content, args.output_pdf, args.chrome_path)
+        write_pdf(html_content, output_pdf, args.chrome_path)
