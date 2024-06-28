@@ -2,7 +2,6 @@
 import argparse
 import base64
 import os
-import re
 import subprocess
 import tempfile
 from typing import List, Optional
