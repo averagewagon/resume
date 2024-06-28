@@ -1,0 +1,28 @@
+#!/bin/sh
+
+# Stash unstaged changes
+git stash -k -u -q
+
+# Run the resume generator script
+python3 "$(git rev-parse --show-toplevel)/generator.py"
+
+# Check the exit status of the script
+if [ $? -ne 0 ]; then
+    echo "Pre-commit hook failed. Please fix the issues before committing."
+    # Restore the stashed changes
+    git stash pop -q
+    exit 1
+fi
+
+# Add the resultant files
+git add Jonathan_Hendrickson_resume.pdf
+git add index.html
+
+# Restore the stashed changes
+git stash pop -q
+
+# Resolve any conflicts by resetting generated files to HEAD
+git checkout HEAD -- Jonathan_Hendrickson_resume.pdf
+git checkout HEAD -- index.html
+
+exit 0
