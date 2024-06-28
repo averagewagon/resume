@@ -198,12 +198,12 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output-html",
-        default="output/index.html",
+        default="docs/index.html",
         help="HTML output file (default: index.html)",
     )
     parser.add_argument(
         "--output-pdf",
-        default="output/Jonathan_Hendrickson_resume.pdf",
+        default="docs/Jonathan_Hendrickson_resume.pdf",
         help="PDF output file (default: Jonathan_Hendrickson_resume.pdf)",
     )
     parser.add_argument(
