@@ -5,9 +5,59 @@ import os
 import subprocess
 import tempfile
 from typing import List, Optional
+import re
 
 import fitz
 import markdown
+from spellchecker import SpellChecker
+
+
+def check_spelling(text: str, dictionary_path: str) -> None:
+    """
+    Checks for spelling errors in the given text, ignoring words in the custom dictionary.
+    Prints a warning message if any misspelled words are found.
+    """
+    spell = SpellChecker()
+
+    # Load custom dictionary words
+    try:
+        with open(dictionary_path, encoding="utf-8") as dictfp:
+            custom_dictionary = dictfp.read().splitlines()
+    except FileNotFoundError:
+        custom_dictionary = []
+
+    spell.word_frequency.load_words(custom_dictionary)
+    words = re.findall(r"\b\w+\b", text)  # Extract words using regex
+    misspelled = spell.unknown(words)
+
+    if misspelled:
+        print_warning(f"Spelling errors found: {', '.join(misspelled)}")
+
+
+def title(md: str) -> str:
+    """
+    Extracts the title from the first Markdown heading.
+    """
+    for line in md.splitlines():
+        if line.startswith("# ") and not line.startswith("##"):
+            return line.strip("# ").strip()
+    raise ValueError("No suitable Markdown h1 heading found for title.")
+
+
+def make_html(md: str, css_file: str) -> str:
+    """
+    Converts Markdown content to HTML format, embedding the specified CSS.
+    """
+    try:
+        with open(css_file) as cssfp:
+            css = cssfp.read()
+    except FileNotFoundError:
+        css = ""
+        print(f"{css_file} not found. Output will be unstyled.")
+
+    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)} - Resume</title><style>{css}</style></head><body><div id='resume'>"
+    postamble = "</div></body></html>"
+    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
 
 
 def guess_chrome_path() -> List[str]:
@@ -55,32 +105,6 @@ def guess_chrome_path() -> List[str]:
     raise FileNotFoundError(
         "Chrome or Chromium browser not found. Please ensure it is installed."
     )
-
-
-def title(md: str) -> str:
-    """
-    Extracts the title from the first Markdown heading.
-    """
-    for line in md.splitlines():
-        if line.startswith("# ") and not line.startswith("##"):
-            return line.strip("# ").strip()
-    raise ValueError("No suitable Markdown h1 heading found for title.")
-
-
-def make_html(md: str, css_file: str) -> str:
-    """
-    Converts Markdown content to HTML format, embedding the specified CSS.
-    """
-    try:
-        with open(css_file) as cssfp:
-            css = cssfp.read()
-    except FileNotFoundError:
-        css = ""
-        print(f"{css_file} not found. Output will be unstyled.")
-
-    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)} - Resume</title><style>{css}</style></head><body><div id='resume'>"
-    postamble = "</div></body></html>"
-    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
 
 
 def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> None:
@@ -174,22 +198,30 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output-html",
-        default="index.html",
+        default="output/index.html",
         help="HTML output file (default: index.html)",
     )
     parser.add_argument(
         "--output-pdf",
-        default="Jonathan_Hendrickson_resume.pdf",
+        default="output/Jonathan_Hendrickson_resume.pdf",
         help="PDF output file (default: Jonathan_Hendrickson_resume.pdf)",
     )
     parser.add_argument(
         "--chrome-path", help="Path to Chrome or Chromium executable for PDF generation"
+    )
+    parser.add_argument(
+        "--custom-dict",
+        default="dictionary.txt",
+        help="File containing custom dictionary words to ignore (default: dictionary.txt)",
     )
 
     args = parser.parse_args()
 
     with open(args.input_md, encoding="utf-8") as mdfp:
         md_content = mdfp.read()
+
+    # Check for spelling errors in the Markdown content
+    check_spelling(md_content, args.custom_dict)
 
     html_content = make_html(md_content, args.input_css)
 

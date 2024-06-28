@@ -8,9 +8,7 @@ The resume.md, style.css, and generator.py files are an adaptation of
 ## Prerequisites
 
 - Python ≥ 3.6
-- [python-markdown](https://python-markdown.github.io/) (`pip install
-markdown`)
-- [PyMuPDF](https://pypi.org/project/PyMuPDF/) (`pip install pymupdf`)
+- `pip install requirements.txt`
 - Optional, required for PDF output: Google Chrome or Chromium
 
 ## Usage
