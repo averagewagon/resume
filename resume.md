@@ -1,6 +1,6 @@
 # Jonathan Hendrickson
 
-- <hire@jhendrickson.dev>
+- <jonathan@jhendrickson.dev>
 - (484) 857-2557
 - Seattle, WA
 - [github.com/averagewagon](https://github.com/averagewagon)
