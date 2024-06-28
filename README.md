@@ -2,7 +2,8 @@
 
 My personal resume, hosted at [jhendrickson.dev](https://jhendrickson.dev).
 
-The resume.md, style.css, and resume.py files are an adaptation of [mikepqr/resume.md](https://github.com/mikepqr/resume.md), tuned to meet my requirements.
+The resume.md, style.css, and generator.py files are an adaptation of
+[mikepqr/resume.md](https://github.com/mikepqr/resume.md), tuned to meet my use cases.
 
 ## Prerequisites
 
@@ -10,6 +11,11 @@ The resume.md, style.css, and resume.py files are an adaptation of [mikepqr/resu
 - [python-markdown](https://python-markdown.github.io/) (`pip install
 markdown`)
 - Optional, required for PDF output: Google Chrome or Chromium
+
+## Usage
+
+Running `./generator.py` will convert `resume.md` and `style.css` into a webpage
+(`index.html`) and a pdf (`Jonathan_Hendrickson_resume.pdf`).
 
 ## Customization
 
