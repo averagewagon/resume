@@ -6,6 +6,7 @@ import subprocess
 import tempfile
 from typing import List, Optional
 
+import fitz
 import markdown
 
 
@@ -86,9 +87,13 @@ def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> 
     """
     Generates a PDF file from HTML content using Chrome or Chromium.
     """
+    # Guess the Chrome path if not provided
     chrome_command = chrome_path.split() if chrome_path else guess_chrome_path()
     html64 = base64.b64encode(html.encode("utf-8")).decode("utf-8")
+
+    # Create a temporary directory
     with tempfile.TemporaryDirectory() as tmpdir:
+        # Define Chrome options for PDF generation
         options = [
             "--no-sandbox",
             "--headless",
@@ -103,8 +108,18 @@ def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> 
             f"--print-to-pdf={output_pdf}",
             f"data:text/html;base64,{html64}",
         ]
+
+        # Run the Chrome command to generate the PDF
         subprocess.run(chrome_command + options, check=True)
         print(f"Wrote {output_pdf}")
+
+        # Check the number of pages in the generated PDF
+        with fitz.open(output_pdf) as pdf_document:
+            num_pages = pdf_document.page_count
+            if num_pages > 1:
+                raise ValueError(
+                    f"The generated PDF has {num_pages} pages, which exceeds the allowed limit of one page."
+                )
 
 
 if __name__ == "__main__":
