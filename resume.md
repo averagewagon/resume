@@ -1,64 +1,57 @@
-<!-- The (first) h1 will be used as the <title> of the HTML page -->
-
 # Jonathan Hendrickson
 
-<!-- The unordered list immediately after the h1 will be formatted on a single
-line. It is intended to be used for contact details -->
-
-- <jonathan.hendrickson@averagewagon.com>
+- <hire@jhendrickson.dev>
 - (484) 857-2557
-- [jhendrickson.dev](https://jhendrickson.dev)
 - Seattle, WA
+- [github.com/averagewagon](https://github.com/averagewagon)
 
-<!-- The paragraph after the h1 and ul and before the first h2 is optional. It
-is intended to be used for a short summary. -->
-
-CEO and Software Engineer with knowledge of applied information theory,
-including optimizing lossless compression schema of both the length-limited and
-adaptive variants.
+Embedded software engineer with experience with microcontrollers and satellite firmware. Skilled with IoT and embedded operating systems (FreeRTOS, Zephyr, Embedded Linux).
 
 ## Experience
 
-<!-- You have to wrap the "left" and "right" half of these headings in spans by
-hand -->
+### <span>Software Development Engineer II, Amazon</span> <span>Aug 2023 – Present</span>
 
-### <span>CEO/President, Pied Piper</span> <span>Dec 2013 -- Dec 2014</span>
+Project Kuiper - Satellite Embedded Software
 
-Pied Piper is a multi-platform technology based on a proprietary universal
-compression algorithm that has consistently fielded high Weisman Scores™ that
-are not merely competitive, but approach the theoretical limit of lossless
-compression.
+- Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux
+- Created a debugging CLI for reading, modifying, and injecting asynchronous messages
+- Contributed to telemetry, commanding, and file transfer components in Rust and C++
 
-- Build an algorithm for artist to detect if their music was violating
-  copyright infringement laws
-- Successfully won Techcrunch Disrupt
-- Optimized an algorithm that holds the current world record for Weisman Scores
+### <span>Software Development Engineer I/II, Amazon Web Services</span> <span>Sept 2021 – Aug 2023</span>
 
-### <span>Teacher, CoderDojo</span> <span>July 2013 -- Dec 2013</span>
+FreeRTOS Maintainer
 
-Global movement of free coding clubs for young people.
+- Developed embedded C libraries for FreeRTOS such as ExpressLink, HTTP, BLE, OTA, and provisioning
+- Designed and implemented a multithreaded MQTT library in MISRA-compliant C99, with UART support
+- Cut network latency by 85%, resolving race conditions, and reducing memory usage by 27%
+- Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
+- Received the highest performance rating (Exceeds High Bar) in yearly reviews
 
-- Awarded 'Teacher of the Month'
+### <span>Backend Developer Intern, Avanade</span> <span>June 2021 – Aug 2021</span>
+
+- Developed custom behaviors with Node.js for AltspaceVR such as virtual tic-tac-toe and item-gifting
+- Achieved Microsoft Azure Fundamentals certification for understanding of cloud computing principles
+- Engaged in agile development methodologies, conducting daily stand-ups and sprint planning
+- Conducted code reviews and provided constructive feedback to team members
 
 ## Projects
 
-### <span>Miss Direction</span> <span>Aug 2016</span>
+### <span>cEDH Decklist Database</span> <span>June 2020 – Present</span>
 
-A mapping engine that misguides you:
-
-- Won award at AIHacks 2016
-- Built by all women team of newbie programmers
-- Using modern technologies such as GoogleMaps, Chrome Extension and Javascript
+- Developed authenticated CRUD application for viewing, submitting, and editing decks
+- Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)
+- Created CI/CD in GitHub Actions to automatically validate and deploy website updates on every commit
 
 ## Education
 
-### <span>University of Oklahoma, BA Information Technology</span> <span>2011 -- 2014</span>
+### <span>University of Washington Bothell, BS Computer Science & Software Engineering</span> <span>Sept 2018 – Aug 2021</span>
 
-- GPA 4.0
-- DB1101 - Basic SQL
-- CS2011 - Java Introduction
+- GPA: 3.70
+- Courses: Operating Systems, Hardware and Computer Organization, Embedded Development
+- As a Teaching Assistant for CSE 180: taught data manipulation, visualization, and statistics
 
 ## Skills
 
-- Web development: HTML, CSS, JavaScript
-- Compression: Mpeg, MP4, GIF
+- Languages: C, Rust, C++, Python, JavaScript/TypeScript, Java, Kotlin, SQL, R, Go, CMake
+- Technologies: Linux, Zephyr, AWS, Azure, GCP, Docker, HTTP, MQTT, BLE, QEMU, GitHub Actions, GitLab CI/CD
+- Concepts: Operating Systems, Embedded, Drivers, Build Tools, CI/CD, Networking, Security, Performance, Cloud, IoT

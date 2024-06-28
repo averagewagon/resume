@@ -17,9 +17,11 @@ markdown`)
 Running `./generator.py` will convert `resume.md` and `style.css` into a webpage
 (`index.html`) and a pdf (`Jonathan_Hendrickson_resume.pdf`).
 
+Additional options are documented through `./generator.py --help`.
+
 ## Customization
 
-Edit [resume.css](resume.css) to change the appearance of your resume. The
+Edit [style.css](style.css) to change the appearance of your resume. The
 default style is extremely generic, which is perhaps what you want in a resume,
 but CSS gives you a lot of flexibility. See, e.g. [The Tech Resume
 Inside-Out](https://www.thetechinterview.com/) for good advice about what a
