@@ -36,8 +36,7 @@ rule](https://developer.mozilla.org/en-US/docs/Web/CSS/%40page/size).
 markdown compiler, but it has a number of optional extensions that you may want
 to enable (by adding to [the list of extensions
 here](https://github.com/mikepqr/resume.md/blob/f1b0699a9b66833cb67bb59111f45a09ed3c0f7e/resume.py#L112)).
-<code><a
-href="https://python-markdown.github.io/extensions/attr_list/">attr_list</a></code>
+[`attr_list`](https://python-markdown.github.io/extensions/attr_list/)
 in particular may by useful if you are editing the CSS.
 [abbreviations](https://python-markdown.github.io/extensions/abbreviations/)
 extension is already enabled.
