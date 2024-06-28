@@ -15,14 +15,14 @@ if [ $? -ne 0 ]; then
 fi
 
 # Add the resultant files
-git add Jonathan_Hendrickson_resume.pdf
-git add index.html
+git add output/Jonathan_Hendrickson_resume.pdf
+git add output/index.html
 
 # Restore the stashed changes
 git stash pop -q
 
 # Resolve any conflicts by resetting generated files to HEAD
-git restore --staged Jonathan_Hendrickson_resume.pdf
-git restore --staged index.html
+git restore --staged output/Jonathan_Hendrickson_resume.pdf
+git restore --staged output/index.html
 
 exit 0
