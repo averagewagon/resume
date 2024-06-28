@@ -86,6 +86,8 @@ def make_html(md: str, css_file: str) -> str:
 def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> None:
     """
     Generates a PDF file from HTML content using Chrome or Chromium.
+    Checks if the PDF is multiple pages and ensures the resume takes up at least 90% of the page.
+    Outputs a yellow warning text if the PDF is more than one page or if the content is too short.
     """
     # Guess the Chrome path if not provided
     chrome_command = chrome_path.split() if chrome_path else guess_chrome_path()
@@ -113,13 +115,49 @@ def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> 
         subprocess.run(chrome_command + options, check=True)
         print(f"Wrote {output_pdf}")
 
-        # Check the number of pages in the generated PDF
-        with fitz.open(output_pdf) as pdf_document:
-            num_pages = pdf_document.page_count
-            if num_pages > 1:
-                raise ValueError(
-                    f"The generated PDF has {num_pages} pages, which exceeds the allowed limit of one page."
-                )
+        # Check the number of pages and content height in the generated PDF
+        check_pdf_pages(output_pdf)
+        check_pdf_content_height(output_pdf)
+
+
+def check_pdf_pages(pdf_path: str) -> None:
+    """
+    Checks the number of pages in the PDF file and outputs a yellow warning if it is more than one.
+    """
+    with fitz.open(pdf_path) as pdf_document:
+        num_pages = pdf_document.page_count
+        if num_pages > 1:
+            print_warning(
+                f"The generated PDF has {num_pages} pages, which exceeds the allowed limit of one page."
+            )
+
+
+def check_pdf_content_height(pdf_path: str) -> None:
+    """
+    Checks that the content in the PDF file takes up at least 90% of the page height.
+    Outputs a yellow warning if the content is too short.
+    """
+    with fitz.open(pdf_path) as pdf_document:
+        page = pdf_document[0]
+        page_height = page.rect.height
+        content_height = 0
+
+        for block in page.get_text("blocks"):
+            _, _, _, block_bottom = block[:4]
+            if block_bottom > content_height:
+                content_height = block_bottom
+
+        if content_height < 0.9 * page_height:
+            print_warning(
+                "The content in the generated PDF does not take up at least 90% of the page height."
+            )
+
+
+def print_warning(message: str) -> None:
+    """
+    Prints a warning message in yellow text.
+    """
+    print(f"\033[93mWARNING: {message}\033[0m")
 
 
 if __name__ == "__main__":
