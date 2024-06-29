@@ -197,11 +197,14 @@ if __name__ == "__main__":
     output_html = os.path.join(output_dir, args.output_html)
     output_pdf = os.path.join(output_dir, args.output_pdf)
 
+    print("Reading input Markdown file...")
     with open(args.input_md, encoding="utf-8") as mdfp:
         md_content = mdfp.read()
 
+    print("Checking spelling in the Markdown content...")
     check_spelling(md_content, args.input_dictionary)
 
+    print("Reading CSS file...")
     with open(args.input_css, encoding="utf-8") as cssfp:
         css_content = cssfp.read()
 
@@ -211,6 +214,8 @@ if __name__ == "__main__":
     first_iteration = True
 
     while True:
+        line_height = round(line_height, 2)  # Round to two decimal places
+        print(f"Adjusting CSS line height to {line_height}...")
         adjusted_css = adjust_css(css_content, line_height)
         html_content = make_html(md_content, adjusted_css)
 
@@ -228,13 +233,16 @@ if __name__ == "__main__":
             first_iteration = False
 
         if num_pages > 1:
+            print("Content exceeds one page, reverting to previous line height...")
             # If the content spills over to more than one page, revert to previous settings
             adjusted_css = adjust_css(css_content, prev_line_height)
             html_content = make_html(md_content, adjusted_css)
 
+            print("Writing HTML content to file with reverted line height...")
             with open(output_html, "w", encoding="utf-8") as htmlfp:
                 htmlfp.write(html_content)
 
+            print("Generating final PDF with reverted line height...")
             write_pdf(html_content, output_pdf, args.chrome_path)
             break
 
