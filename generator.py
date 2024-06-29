@@ -12,52 +12,11 @@ import markdown
 from spellchecker import SpellChecker
 
 
-def check_spelling(text: str, dictionary_path: str) -> None:
+def print_warning(message: str) -> None:
     """
-    Checks for spelling errors in the given text, ignoring words in the custom dictionary.
-    Prints a warning message if any misspelled words are found.
+    Prints a warning message in yellow text.
     """
-    spell = SpellChecker()
-
-    # Load custom dictionary words
-    try:
-        with open(dictionary_path, encoding="utf-8") as dictfp:
-            custom_dictionary = dictfp.read().splitlines()
-    except FileNotFoundError:
-        custom_dictionary = []
-
-    spell.word_frequency.load_words(custom_dictionary)
-    words = re.findall(r"\b\w+\b", text)  # Extract words using regex
-    misspelled = spell.unknown(words)
-
-    if misspelled:
-        print_warning(f"Spelling errors found: {', '.join(misspelled)}")
-
-
-def title(md: str) -> str:
-    """
-    Extracts the title from the first Markdown heading.
-    """
-    for line in md.splitlines():
-        if line.startswith("# ") and not line.startswith("##"):
-            return line.strip("# ").strip()
-    raise ValueError("No suitable Markdown h1 heading found for title.")
-
-
-def make_html(md: str, css_file: str) -> str:
-    """
-    Converts Markdown content to HTML format, embedding the specified CSS.
-    """
-    try:
-        with open(css_file) as cssfp:
-            css = cssfp.read()
-    except FileNotFoundError:
-        css = ""
-        print(f"{css_file} not found. Output will be unstyled.")
-
-    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title(md)} - Resume</title><style>{css}</style></head><body><div id='resume'>"
-    postamble = "</div></body></html>"
-    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
+    print(f"\033[93mWARNING: {message}\033[0m")
 
 
 def guess_chrome_path() -> List[str]:
@@ -107,19 +66,56 @@ def guess_chrome_path() -> List[str]:
     )
 
 
-def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> None:
+def check_spelling(text: str, dictionary_path: str) -> None:
     """
-    Generates a PDF file from HTML content using Chrome or Chromium.
-    Checks if the PDF is multiple pages and ensures the resume takes up at least 90% of the page.
-    Outputs a yellow warning text if the PDF is more than one page or if the content is too short.
+    Checks for spelling errors in the given text, ignoring words in the custom dictionary.
+    Prints a warning message if any misspelled words are found.
     """
-    # Guess the Chrome path if not provided
+    spell = SpellChecker()
+
+    # Load custom dictionary words
+    try:
+        with open(dictionary_path, encoding="utf-8") as dictfp:
+            custom_dictionary = dictfp.read().splitlines()
+    except FileNotFoundError:
+        custom_dictionary = []
+
+    spell.word_frequency.load_words(custom_dictionary)
+    words = re.findall(r"\b\w+\b", text)  # Extract words using regex
+    misspelled = spell.unknown(words)
+
+    if misspelled:
+        print_warning(f"Spelling errors found: {', '.join(misspelled)}")
+
+
+def make_html(md: str, css: str) -> str:
+    """
+    Converts Markdown content to HTML format, embedding the specified CSS and
+    extracting the title from the first Markdown heading.
+    """
+    # Extract the title from the first Markdown heading
+    title = None
+    for line in md.splitlines():
+        if line.startswith("# ") and not line.startswith("##"):
+            title = line.strip("# ").strip()
+            break
+
+    if title is None:
+        raise ValueError("No suitable Markdown h1 heading found for title.")
+
+    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title} - Resume</title><style>{css}</style></head><body><div id='resume'>"
+    postamble = "</div></body></html>"
+    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
+
+
+def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> int:
+    """
+    Generates a PDF file from HTML content using Chrome or Chromium and returns the number of pages in the PDF.
+    """
     chrome_command = chrome_path.split() if chrome_path else guess_chrome_path()
     html64 = base64.b64encode(html.encode("utf-8")).decode("utf-8")
 
-    # Create a temporary directory
     with tempfile.TemporaryDirectory() as tmpdir:
-        # Define Chrome options for PDF generation
         options = [
             "--no-sandbox",
             "--headless",
@@ -135,53 +131,27 @@ def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> 
             f"data:text/html;base64,{html64}",
         ]
 
-        # Run the Chrome command to generate the PDF
-        subprocess.run(chrome_command + options, check=True)
-        print(f"Wrote {output_pdf}")
+        result = subprocess.run(
+            chrome_command + options, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
+        if result.returncode != 0:
+            print(f"Error: {result.stderr.decode('utf-8')}")
+            print(result.stdout.decode("utf-8"))
+            raise subprocess.CalledProcessError(result.returncode, result.args)
 
-        # Check the number of pages and content height in the generated PDF
-        check_pdf_pages(output_pdf)
-        check_pdf_content_height(output_pdf)
+    # Check the number of pages in the generated PDF and return the count
+    with fitz.open(output_pdf) as pdf_document:
+        return pdf_document.page_count
 
 
-def check_pdf_pages(pdf_path: str) -> None:
+def adjust_css(css_content: str, line_height: float) -> str:
     """
-    Checks the number of pages in the PDF file and outputs a yellow warning if it is more than one.
+    Adjusts the CSS content to set the line height for print.
     """
-    with fitz.open(pdf_path) as pdf_document:
-        num_pages = pdf_document.page_count
-        if num_pages > 1:
-            print_warning(
-                f"The generated PDF has {num_pages} pages, which exceeds the allowed limit of one page."
-            )
-
-
-def check_pdf_content_height(pdf_path: str) -> None:
-    """
-    Checks that the content in the PDF file takes up at least 90% of the page height.
-    Outputs a yellow warning if the content is too short.
-    """
-    with fitz.open(pdf_path) as pdf_document:
-        page = pdf_document[0]
-        page_height = page.rect.height
-        content_height = 0
-
-        for block in page.get_text("blocks"):
-            _, _, _, block_bottom = block[:4]
-            if block_bottom > content_height:
-                content_height = block_bottom
-
-        if content_height < 0.9 * page_height:
-            print_warning(
-                "The content in the generated PDF does not take up at least 90% of the page height."
-            )
-
-
-def print_warning(message: str) -> None:
-    """
-    Prints a warning message in yellow text.
-    """
-    print(f"\033[93mWARNING: {message}\033[0m")
+    css_content = re.sub(
+        r"line-height:\s*[\d.]+;", f"line-height: {line_height};", css_content
+    )
+    return css_content
 
 
 if __name__ == "__main__":
@@ -230,15 +200,46 @@ if __name__ == "__main__":
     with open(args.input_md, encoding="utf-8") as mdfp:
         md_content = mdfp.read()
 
-    # Check for spelling errors in the Markdown content
     check_spelling(md_content, args.input_dictionary)
 
-    html_content = make_html(md_content, args.input_css)
+    with open(args.input_css, encoding="utf-8") as cssfp:
+        css_content = cssfp.read()
 
-    os.makedirs(output_dir, exist_ok=True)
+    line_height = 1.2  # Starting line height
+    prev_line_height = line_height
 
-    with open(output_html, "w", encoding="utf-8") as htmlfp:
-        htmlfp.write(html_content)
+    first_iteration = True
 
-    if args.output_pdf:
-        write_pdf(html_content, output_pdf, args.chrome_path)
+    while True:
+        adjusted_css = adjust_css(css_content, line_height)
+        html_content = make_html(md_content, adjusted_css)
+
+        os.makedirs(output_dir, exist_ok=True)
+
+        with open(output_html, "w", encoding="utf-8") as htmlfp:
+            htmlfp.write(html_content)
+
+        num_pages = write_pdf(html_content, output_pdf, args.chrome_path)
+
+        if first_iteration:
+            if num_pages > 1:
+                print_warning("The generated PDF exceeds one page.")
+                break
+            first_iteration = False
+
+        if num_pages > 1:
+            # If the content spills over to more than one page, revert to previous settings
+            adjusted_css = adjust_css(css_content, prev_line_height)
+            html_content = make_html(md_content, adjusted_css)
+
+            with open(output_html, "w", encoding="utf-8") as htmlfp:
+                htmlfp.write(html_content)
+
+            write_pdf(html_content, output_pdf, args.chrome_path)
+            break
+
+        # Update previous settings
+        prev_line_height = line_height
+
+        # Increase line height for the next iteration
+        line_height += 0.05

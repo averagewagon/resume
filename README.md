@@ -2,8 +2,15 @@
 
 My personal resume, hosted at [jhendrickson.dev](https://jhendrickson.dev).
 
-The resume.md, style.css, and generator.py files are an adaptation of
+The resume.md, style.css, and generator.py files are heavily adapted from
 [mikepqr/resume.md](https://github.com/mikepqr/resume.md), tuned to meet my use cases.
+
+- **Markdown to HTML Conversion**: Easily convert Markdown content into HTML.
+- **Custom CSS Styling**: Embed custom CSS for professional styling.
+- **Formatted One-Page Resume**: Convert Markdown into a well-formatted, single-page resume.
+- **Spell Checking**: Check for spelling errors, ignoring words in a custom dictionary.
+- **PDF Generation**: Generate a PDF from HTML using Chrome or Chromium.
+- **Line Height Adjustment**: Automatically adjust line height to fit content within one page.
 
 ## Prerequisites
 
