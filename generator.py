@@ -103,9 +103,22 @@ def make_html(md: str, css: str) -> str:
     if title is None:
         raise ValueError("No suitable Markdown h1 heading found for title.")
 
-    preamble = f"<html lang='en'><head><meta charset='UTF-8'><title>{title} - Resume</title><style>{css}</style></head><body><div id='resume'>"
+    preamble = (
+        f"<html lang='en'>"
+        f"<head>"
+        f"<meta charset='UTF-8'>"
+        f"<title>{title} - Resume</title>"
+        f"<style>{css}</style>"
+        f"</head>"
+        f"<body>"
+        f"<div id='resume'>"
+    )
     postamble = "</div></body></html>"
-    return preamble + markdown.markdown(md, extensions=["smarty", "abbr"]) + postamble
+    return (
+        preamble
+        + markdown.markdown(md, extensions=["smarty", "abbr", "tables"])
+        + postamble
+    )
 
 
 def write_pdf(html: str, output_pdf: str, chrome_path: Optional[str] = None) -> int:

@@ -4,8 +4,13 @@
   font:
     1.1em "Times New Roman",
     serif;
-  line-height: 1.5;
+  line-height: 1.35;
   margin: 40px 0;
+}
+
+hr {
+  border: none; /* Remove the default border */
+  border-top: 1px solid black; /* Add a black top border */
 }
 
 #resume {
@@ -29,7 +34,7 @@ h2 {
   border-bottom: 1px solid #000;
   text-transform: uppercase;
   font-size: 130%;
-  margin: 1em 0 0;
+  margin: 0.8em 0;
   padding: 0;
 }
 
@@ -135,6 +140,34 @@ h1 + ul + p {
     box-shadow: none;
   }
 }
+
+/* CSS for evenly spaced table with subtle borders */
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 0px auto; /* Center the table horizontally */
+  font-size: 0.9em; /* Set font size slightly lower than the body */
+}
+
+table th,
+table td {
+  padding: 6px;
+  text-align: left; /* Align text to the left within each cell */
+  width: 33.33%; /* Evenly distribute table cells */
+  border-bottom: 1px solid #ddd; /* Subtle grey border between rows */
+}
+
+table th {
+  display: none; /* Hide the header row */
+}
+
+table tr td:not(:last-child) {
+  border-right: 1px solid #ddd; /* Subtle grey border between columns */
+}
+
+table tr:last-child td {
+  border-bottom: none; /* Remove bottom border on the last row */
+}
 </style></head><body><div id='resume'><h1>Jonathan Hendrickson</h1>
 <ul>
 <li><a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#106;&#111;&#110;&#97;&#116;&#104;&#97;&#110;&#64;&#106;&#104;&#101;&#110;&#100;&#114;&#105;&#99;&#107;&#115;&#111;&#110;&#46;&#100;&#101;&#118;">&#106;&#111;&#110;&#97;&#116;&#104;&#97;&#110;&#64;&#106;&#104;&#101;&#110;&#100;&#114;&#105;&#99;&#107;&#115;&#111;&#110;&#46;&#100;&#101;&#118;</a></li>
@@ -142,7 +175,41 @@ h1 + ul + p {
 <li>Seattle, WA</li>
 <li><a href="https://github.com/averagewagon">github.com/averagewagon</a></li>
 </ul>
-<p>Embedded software engineer with experience with microcontrollers and satellite firmware. Skilled with IoT and embedded operating systems (FreeRTOS, Zephyr, Embedded Linux).</p>
+<hr>
+
+<p>Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory embedded applications using C, Rust, and C++.</p>
+<h2>Skills</h2>
+<table>
+<thead>
+<tr>
+<th>COLUMN 1</th>
+<th>COLUMN 2</th>
+<th>COLUMN 3</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>C, Rust, and C++ programming</td>
+<td>Microcontrollers (RISC-V, ARM)</td>
+<td>Internet of Things (IoT)</td>
+</tr>
+<tr>
+<td>Satellite Firmware</td>
+<td>Low-level networking</td>
+<td>Bluetooth Low Energy (BLE)</td>
+</tr>
+<tr>
+<td>Serial comms (UART, SPI, I2C)</td>
+<td>JTAG/SWD debugging</td>
+<td>Over-the-air updates (OTA)</td>
+</tr>
+<tr>
+<td>Zephyr RTOS</td>
+<td>FreeRTOS</td>
+<td>Embedded Linux</td>
+</tr>
+</tbody>
+</table>
 <h2>Experience</h2>
 <h3><span>Software Development Engineer II, Amazon</span> <span>Aug 2023 – Present</span></h3>
 <p>Project Kuiper - Satellite Embedded Software</p>
@@ -169,6 +236,7 @@ h1 + ul + p {
 </ul>
 <h2>Projects</h2>
 <h3><span>cEDH Decklist Database</span> <span>June 2020 – Present</span></h3>
+<p><a href="https://github.com/averagewagon/cEDH-Decklist-Database">GitHub Repository</a></p>
 <ul>
 <li>Developed authenticated CRUD application for viewing, submitting, and editing decks</li>
 <li>Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)</li>
@@ -180,10 +248,4 @@ h1 + ul + p {
 <li>GPA: 3.70</li>
 <li>Courses: Operating Systems, Hardware and Computer Organization, Embedded Development</li>
 <li>As a Teaching Assistant for CSE 180: taught data manipulation, visualization, and statistics</li>
-</ul>
-<h2>Skills</h2>
-<ul>
-<li>Languages: C, Rust, C++, Python, JavaScript/TypeScript, Java, Kotlin, SQL, R, Go, CMake</li>
-<li>Technologies: Linux, Zephyr, AWS, Azure, GCP, Docker, HTTP, MQTT, BLE, QEMU, GitHub Actions, GitLab CI/CD</li>
-<li>Concepts: Operating Systems, Embedded, Drivers, Build Tools, CI/CD, Networking, Security, Performance, Cloud, IoT</li>
 </ul></div></body></html>

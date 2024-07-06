@@ -5,7 +5,18 @@
 - Seattle, WA
 - [github.com/averagewagon](https://github.com/averagewagon)
 
-Embedded software engineer with experience with microcontrollers and satellite firmware. Skilled with IoT and embedded operating systems (FreeRTOS, Zephyr, Embedded Linux).
+<hr>
+
+Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory embedded applications using C, Rust, and C++.
+
+## Skills
+
+| COLUMN 1                      | COLUMN 2                       | COLUMN 3                   |
+| ----------------------------- | ------------------------------ | -------------------------- |
+| C, Rust, and C++ programming  | Microcontrollers (RISC-V, ARM) | Internet of Things (IoT)   |
+| Satellite Firmware            | Low-level networking           | Bluetooth Low Energy (BLE) |
+| Serial comms (UART, SPI, I2C) | JTAG/SWD debugging             | Over-the-air updates (OTA) |
+| Zephyr RTOS                   | FreeRTOS                       | Embedded Linux             |
 
 ## Experience
 
@@ -38,6 +49,8 @@ FreeRTOS Maintainer
 
 ### <span>cEDH Decklist Database</span> <span>June 2020 – Present</span>
 
+[GitHub Repository](https://github.com/averagewagon/cEDH-Decklist-Database)
+
 - Developed authenticated CRUD application for viewing, submitting, and editing decks
 - Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)
 - Created CI/CD in GitHub Actions to automatically validate and deploy website updates on every commit
@@ -49,9 +62,3 @@ FreeRTOS Maintainer
 - GPA: 3.70
 - Courses: Operating Systems, Hardware and Computer Organization, Embedded Development
 - As a Teaching Assistant for CSE 180: taught data manipulation, visualization, and statistics
-
-## Skills
-
-- Languages: C, Rust, C++, Python, JavaScript/TypeScript, Java, Kotlin, SQL, R, Go, CMake
-- Technologies: Linux, Zephyr, AWS, Azure, GCP, Docker, HTTP, MQTT, BLE, QEMU, GitHub Actions, GitLab CI/CD
-- Concepts: Operating Systems, Embedded, Drivers, Build Tools, CI/CD, Networking, Security, Performance, Cloud, IoT

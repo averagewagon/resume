@@ -8,6 +8,11 @@ body {
   margin: 40px 0;
 }
 
+hr {
+  border: none; /* Remove the default border */
+  border-top: 1px solid black; /* Add a black top border */
+}
+
 #resume {
   margin: 0 auto;
   max-width: 900px;
@@ -29,7 +34,7 @@ h2 {
   border-bottom: 1px solid #000;
   text-transform: uppercase;
   font-size: 130%;
-  margin: 1em 0 0;
+  margin: 0.8em 0;
   padding: 0;
 }
 
@@ -134,4 +139,32 @@ h1 + ul + p {
     background: none;
     box-shadow: none;
   }
+}
+
+/* CSS for evenly spaced table with subtle borders */
+table {
+  width: 95%;
+  border-collapse: collapse;
+  margin: 0px auto; /* Center the table horizontally */
+  font-size: 0.9em; /* Set font size slightly lower than the body */
+}
+
+table th,
+table td {
+  padding: 6px;
+  text-align: left; /* Align text to the left within each cell */
+  width: 33.33%; /* Evenly distribute table cells */
+  border-bottom: 1px solid #ddd; /* Subtle grey border between rows */
+}
+
+table th {
+  display: none; /* Hide the header row */
+}
+
+table tr td:not(:last-child) {
+  border-right: 1px solid #ddd; /* Subtle grey border between columns */
+}
+
+table tr:last-child td {
+  border-bottom: none; /* Remove bottom border on the last row */
 }
