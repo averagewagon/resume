@@ -4,7 +4,7 @@
   font:
     1.1em "Times New Roman",
     serif;
-  line-height: 1.35;
+  line-height: 1.25;
   margin: 40px 0;
 }
 
@@ -33,7 +33,7 @@ h1 {
 h2 {
   border-bottom: 1px solid #000;
   text-transform: uppercase;
-  font-size: 130%;
+  font-size: 120%;
   margin: 0.8em 0;
   padding: 0;
 }
@@ -175,8 +175,6 @@ table tr:last-child td {
 <li>Seattle, WA</li>
 <li><a href="https://github.com/averagewagon">github.com/averagewagon</a></li>
 </ul>
-<hr>
-
 <p>Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory embedded applications using C, Rust, and C++.</p>
 <h2>Skills</h2>
 <table>
@@ -189,19 +187,14 @@ table tr:last-child td {
 </thead>
 <tbody>
 <tr>
-<td>C, Rust, and C++ programming</td>
+<td>C, Rust, Python, and C++ programming</td>
 <td>Microcontrollers (RISC-V, ARM)</td>
 <td>Internet of Things (IoT)</td>
 </tr>
 <tr>
-<td>Satellite Firmware</td>
-<td>Low-level networking</td>
-<td>Bluetooth Low Energy (BLE)</td>
-</tr>
-<tr>
 <td>Serial comms (UART, SPI, I2C)</td>
+<td>Networking (BLE, MQTT, HTTP)</td>
 <td>JTAG/SWD debugging</td>
-<td>Over-the-air updates (OTA)</td>
 </tr>
 <tr>
 <td>Zephyr RTOS</td>
@@ -211,14 +204,15 @@ table tr:last-child td {
 </tbody>
 </table>
 <h2>Experience</h2>
-<h3><span>Software Development Engineer II, Amazon</span> <span>Aug 2023 – Present</span></h3>
+<h3><span>Amazon &ndash; Software Development Engineer II</span> <span>Aug 2023 &ndash; Present</span></h3>
 <p>Project Kuiper - Satellite Embedded Software</p>
 <ul>
 <li>Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux</li>
-<li>Created a debugging CLI for reading, modifying, and injecting asynchronous messages</li>
-<li>Contributed to telemetry, commanding, and file transfer components in Rust and C++</li>
+<li>Contributed to CPU performance improvements to telemetry, commanding, and file transfer components</li>
+<li>Implemented a cross-compilation toolchain using Clang and CMake for deploying signed images with Yocto</li>
+<li>Developed a debugging CLI for config hot reloads, IPC message injection, and real-time diagnostics</li>
 </ul>
-<h3><span>Software Development Engineer I/II, Amazon Web Services</span> <span>Sept 2021 – Aug 2023</span></h3>
+<h3><span>Amazon Web Services &ndash; Software Development Engineer I/II</span> <span>Sept 2021 &ndash; Aug 2023</span></h3>
 <p>FreeRTOS Maintainer</p>
 <ul>
 <li>Developed embedded C libraries for FreeRTOS such as ExpressLink, HTTP, BLE, OTA, and provisioning</li>
@@ -227,7 +221,7 @@ table tr:last-child td {
 <li>Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests</li>
 <li>Received the highest performance rating (Exceeds High Bar) in yearly reviews</li>
 </ul>
-<h3><span>Backend Developer Intern, Avanade</span> <span>June 2021 – Aug 2021</span></h3>
+<h3><span>Avanade &ndash; Backend Developer Intern</span> <span>June 2021 &ndash; Aug 2021</span></h3>
 <ul>
 <li>Developed custom behaviors with Node.js for AltspaceVR such as virtual tic-tac-toe and item-gifting</li>
 <li>Achieved Microsoft Azure Fundamentals certification for understanding of cloud computing principles</li>
@@ -235,15 +229,20 @@ table tr:last-child td {
 <li>Conducted code reviews and provided constructive feedback to team members</li>
 </ul>
 <h2>Projects</h2>
-<h3><span>cEDH Decklist Database</span> <span>June 2020 – Present</span></h3>
+<h3><span>cEDH Decklist Database</span> <span>June 2020 &ndash; Present</span></h3>
 <p><a href="https://github.com/averagewagon/cEDH-Decklist-Database">GitHub Repository</a></p>
 <ul>
-<li>Developed authenticated CRUD application for viewing, submitting, and editing decks</li>
+<li>Developed authenticated CRUD application for viewing, submitting, and editing links to decks</li>
 <li>Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)</li>
 <li>Created CI/CD in GitHub Actions to automatically validate and deploy website updates on every commit</li>
 </ul>
 <h2>Education</h2>
-<h3><span>University of Washington Bothell, BS Computer Science &amp; Software Engineering</span> <span>Sept 2018 – Aug 2021</span></h3>
+<h3><span>RISC-V Foundational Associate &ndash; Certificate</span> <span>July 2024</span></h3>
+<ul>
+<li>Comprehensive understanding of RISC-V architecture and instruction set</li>
+<li>Focus on low-level programming and hardware-software integration</li>
+</ul>
+<h3><span>University of Washington Bothell &ndash; BS Computer Science &amp; Software Engineering</span> <span>Sept 2018 &ndash; Aug 2021</span></h3>
 <ul>
 <li>GPA: 3.70</li>
 <li>Courses: Operating Systems, Hardware and Computer Organization, Embedded Development</li>

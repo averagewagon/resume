@@ -18,6 +18,8 @@ cmake
 cognito
 com
 comms
+config
+cpu
 cse
 decklist
 dev
@@ -35,11 +37,13 @@ https
 i2c
 ii
 iot
+ipc
 javascript
 jhendrickson
 jonathan
 js
 jtag
+july
 june
 kotlin
 kuiper
@@ -60,6 +64,8 @@ spi
 sql
 swd
 tac
+toolchain
 uart
 wa
 washington
+yocto

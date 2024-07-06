@@ -5,30 +5,28 @@
 - Seattle, WA
 - [github.com/averagewagon](https://github.com/averagewagon)
 
-<hr>
-
 Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory embedded applications using C, Rust, and C++.
 
 ## Skills
 
-| COLUMN 1                      | COLUMN 2                       | COLUMN 3                   |
-| ----------------------------- | ------------------------------ | -------------------------- |
-| C, Rust, and C++ programming  | Microcontrollers (RISC-V, ARM) | Internet of Things (IoT)   |
-| Satellite Firmware            | Low-level networking           | Bluetooth Low Energy (BLE) |
-| Serial comms (UART, SPI, I2C) | JTAG/SWD debugging             | Over-the-air updates (OTA) |
-| Zephyr RTOS                   | FreeRTOS                       | Embedded Linux             |
+| COLUMN 1                             | COLUMN 2                       | COLUMN 3                 |
+| ------------------------------------ | ------------------------------ | ------------------------ |
+| C, Rust, Python, and C++ programming | Microcontrollers (RISC-V, ARM) | Internet of Things (IoT) |
+| Serial comms (UART, SPI, I2C)        | Networking (BLE, MQTT, HTTP)   | JTAG/SWD debugging       |
+| Zephyr RTOS                          | FreeRTOS                       | Embedded Linux           |
 
 ## Experience
 
-### <span>Software Development Engineer II, Amazon</span> <span>Aug 2023 – Present</span>
+### <span>Amazon -- Software Development Engineer II</span> <span>Aug 2023 -- Present</span>
 
 Project Kuiper - Satellite Embedded Software
 
 - Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux
-- Created a debugging CLI for reading, modifying, and injecting asynchronous messages
-- Contributed to telemetry, commanding, and file transfer components in Rust and C++
+- Contributed to CPU performance improvements to telemetry, commanding, and file transfer components
+- Implemented a cross-compilation toolchain using Clang and CMake for deploying signed images with Yocto
+- Developed a debugging CLI for config hot reloads, IPC message injection, and real-time diagnostics
 
-### <span>Software Development Engineer I/II, Amazon Web Services</span> <span>Sept 2021 – Aug 2023</span>
+### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Sept 2021 -- Aug 2023</span>
 
 FreeRTOS Maintainer
 
@@ -38,7 +36,7 @@ FreeRTOS Maintainer
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
 - Received the highest performance rating (Exceeds High Bar) in yearly reviews
 
-### <span>Backend Developer Intern, Avanade</span> <span>June 2021 – Aug 2021</span>
+### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
 
 - Developed custom behaviors with Node.js for AltspaceVR such as virtual tic-tac-toe and item-gifting
 - Achieved Microsoft Azure Fundamentals certification for understanding of cloud computing principles
@@ -47,17 +45,22 @@ FreeRTOS Maintainer
 
 ## Projects
 
-### <span>cEDH Decklist Database</span> <span>June 2020 – Present</span>
+### <span>cEDH Decklist Database</span> <span>June 2020 -- Present</span>
 
 [GitHub Repository](https://github.com/averagewagon/cEDH-Decklist-Database)
 
-- Developed authenticated CRUD application for viewing, submitting, and editing decks
+- Developed authenticated CRUD application for viewing, submitting, and editing links to decks
 - Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)
 - Created CI/CD in GitHub Actions to automatically validate and deploy website updates on every commit
 
 ## Education
 
-### <span>University of Washington Bothell, BS Computer Science & Software Engineering</span> <span>Sept 2018 – Aug 2021</span>
+### <span>RISC-V Foundational Associate -- Certificate</span> <span>July 2024</span>
+
+- Comprehensive understanding of RISC-V architecture and instruction set
+- Focus on low-level programming and hardware-software integration
+
+### <span>University of Washington Bothell -- BS Computer Science & Software Engineering</span> <span>Sept 2018 -- Aug 2021</span>
 
 - GPA: 3.70
 - Courses: Operating Systems, Hardware and Computer Organization, Embedded Development
