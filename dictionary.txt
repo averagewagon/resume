@@ -26,6 +26,8 @@ dev
 dynamodb
 expresslink
 freertos
+gatt
+gcc
 gcp
 github
 gitlab
@@ -54,6 +56,7 @@ misra
 mqtt
 multithreaded
 ota
+performant
 pytest
 qemu
 risc
@@ -64,6 +67,7 @@ spi
 sql
 swd
 tac
+tcp
 toolchain
 uart
 wa

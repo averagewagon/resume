@@ -9,11 +9,11 @@ Embedded software engineer with experience developing microcontrollers, IoT solu
 
 ## Skills
 
-| COLUMN 1                             | COLUMN 2                       | COLUMN 3                 |
-| ------------------------------------ | ------------------------------ | ------------------------ |
-| C, Rust, Python, and C++ programming | Microcontrollers (RISC-V, ARM) | Internet of Things (IoT) |
-| Serial comms (UART, SPI, I2C)        | Networking (BLE, MQTT, HTTP)   | JTAG/SWD debugging       |
-| Zephyr RTOS                          | FreeRTOS                       | Embedded Linux           |
+| COLUMN 1                         | COLUMN 2                       | COLUMN 3                         |
+| -------------------------------- | ------------------------------ | -------------------------------- |
+| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM) | FreeRTOS, Zephyr, Embedded Linux |
+| Serial comms (UART, SPI, I2C)    | Networking (BLE, MQTT, HTTP)   | JTAG/SWD debugging               |
+| Internet of Things (IoT)         | CMake, GCC, Clang              | Git, CI/CD, and shell scripting  |
 
 ## Experience
 
@@ -21,7 +21,7 @@ Embedded software engineer with experience developing microcontrollers, IoT solu
 
 Project Kuiper - Satellite Embedded Software
 
-- Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux
+- Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux and RTOS
 - Contributed to CPU performance improvements to telemetry, commanding, and file transfer components
 - Implemented a cross-compilation toolchain using Clang and CMake for deploying signed images with Yocto
 - Developed a debugging CLI for config hot reloads, IPC message injection, and real-time diagnostics
@@ -30,11 +30,11 @@ Project Kuiper - Satellite Embedded Software
 
 FreeRTOS Maintainer
 
-- Developed embedded C libraries for FreeRTOS such as ExpressLink, HTTP, BLE, OTA, and provisioning
+- Developed embedded C libraries for FreeRTOS such as ExpressLink, HTTP, OTA, and provisioning
 - Designed and implemented a multithreaded MQTT library in MISRA-compliant C99, with UART support
+- Wrote BLE GAP/GATT command set over UART and implemented a performant prototype with ExpressLink
 - Cut network latency by 85%, resolving race conditions, and reducing memory usage by 27%
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
-- Received the highest performance rating (Exceeds High Bar) in yearly reviews
 
 ### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
 
