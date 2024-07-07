@@ -30,10 +30,9 @@ Project Kuiper - Satellite Embedded Software
 
 FreeRTOS Maintainer
 
-- Developed embedded C libraries for FreeRTOS such as ExpressLink, HTTP, OTA, and provisioning
-- Designed and implemented a multithreaded MQTT library in MISRA-compliant C99, with UART support
+- Developed MISRA-compliant embedded C libraries for FreeRTOS such as ExpressLink, HTTP, and OTA
+- Cut network latency by 85%, resolved race conditions, and reduced memory usage by 27% in MQTT library
 - Wrote BLE GAP/GATT command set over UART and implemented a performant prototype with ExpressLink
-- Cut network latency by 85%, resolving race conditions, and reducing memory usage by 27%
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
 
 ### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
