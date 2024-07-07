@@ -5,7 +5,7 @@
 - Seattle, WA
 - [github.com/averagewagon](https://github.com/averagewagon)
 
-Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory embedded applications using C, Rust, and C++.
+Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory, and safety-critical embedded applications.
 
 ## Skills
 
