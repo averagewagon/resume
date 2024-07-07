@@ -192,8 +192,8 @@ if __name__ == "__main__":
     )
     parser.add_argument(
         "--output-html",
-        default="index.html",
-        help="HTML output file name (default: index.html)",
+        default="resume.html",
+        help="HTML output file name (default: resume.html)",
     )
     parser.add_argument(
         "--output-pdf",
