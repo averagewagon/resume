@@ -32,7 +32,7 @@ FreeRTOS Maintainer
 
 - Developed MISRA-compliant embedded C libraries for FreeRTOS such as ExpressLink, HTTP, and OTA
 - Cut network latency by 85%, resolved race conditions, and reduced memory usage by 27% in MQTT library
-- Wrote BLE GAP/GATT command set over UART and implemented a performant prototype with ExpressLink
+- Wrote BLE GAP/GATT command set over UART and implemented a performant prototype on ExpressLink
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
 
 ### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
