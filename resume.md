@@ -61,6 +61,6 @@ FreeRTOS Maintainer
 
 ### <span>University of Washington Bothell -- BS Computer Science & Software Engineering</span> <span>Sept 2018 -- Aug 2021</span>
 
-- GPA: 3.70
+- GPA: 3.77
 - Courses: Operating Systems, Hardware and Computer Organization, Embedded Development
 - As a Teaching Assistant for CSE 180: taught data manipulation, visualization, and statistics
