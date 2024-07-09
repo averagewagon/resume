@@ -23,7 +23,7 @@ Project Kuiper - Satellite Embedded Software
 
 - Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux and RTOS
 - Contributed to CPU performance improvements to telemetry, commanding, and file transfer components
-- Implemented a cross-compilation toolchain using Clang and CMake for deploying signed images with Yocto
+- Implemented a cross-compilation build system using Clang and CMake for deploying signed images on top of Yocto
 - Developed a debugging CLI for config hot reloads, IPC message injection, and real-time diagnostics
 
 ### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Sept 2021 -- Aug 2023</span>
