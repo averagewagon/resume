@@ -9,11 +9,11 @@ Embedded software engineer with experience developing microcontrollers, IoT solu
 
 ## Skills
 
-| COLUMN 1                         | COLUMN 2                       | COLUMN 3                         |
-| -------------------------------- | ------------------------------ | -------------------------------- |
-| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM) | FreeRTOS, Zephyr, Embedded Linux |
-| Serial comms (UART, SPI, I2C)    | Networking (BLE, MQTT, HTTP)   | JTAG/SWD debugging               |
-| Internet of Things (IoT)         | CMake, GCC, Clang              | Git, CI/CD, and shell scripting  |
+| COLUMN 1                         | COLUMN 2                           | COLUMN 3                         |
+| -------------------------------- | ---------------------------------- | -------------------------------- |
+| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM)     | FreeRTOS, Zephyr, Embedded Linux |
+| Serial comms (UART, SPI, I2C)    | Networking (BLE, TCP/IP, Ethernet) | JTAG/SWD debugging               |
+| Internet of Things (IoT)         | CMake, GCC, Clang                  | Git, CI/CD, and shell scripting  |
 
 ## Experience
 
@@ -30,7 +30,8 @@ Project Kuiper - Satellite Embedded Software
 
 FreeRTOS Maintainer
 
-- Developed MISRA-compliant embedded C libraries for FreeRTOS such as ExpressLink, HTTP, and OTA
+- Developed MISRA-compliant embedded C libraries for FreeRTOS such as MQTT, HTTP, and OTA updates
+- Wrote and shipped AWS IoT ExpressLink, a FreeRTOS hardware module exposing MQTT over UART commands
 - Cut network latency by 85%, resolved race conditions, and reduced memory usage by 27% in MQTT library
 - Wrote BLE GAP/GATT command set over UART and implemented a performant prototype on ExpressLink
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
