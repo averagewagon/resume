@@ -9,11 +9,11 @@ Embedded software engineer with experience developing microcontrollers, IoT solu
 
 ## Skills
 
-| COLUMN 1                         | COLUMN 2                           | COLUMN 3                         |
-| -------------------------------- | ---------------------------------- | -------------------------------- |
-| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM)     | FreeRTOS, Zephyr, Embedded Linux |
-| Serial comms (UART, SPI, I2C)    | Networking (BLE, TCP/IP, Ethernet) | JTAG/SWD debugging               |
-| Internet of Things (IoT)         | CMake, GCC, Clang                  | Git, CI/CD, and shell scripting  |
+| COLUMN 1                         | COLUMN 2                       | COLUMN 3                         |
+| -------------------------------- | ------------------------------ | -------------------------------- |
+| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM) | FreeRTOS, Zephyr, Embedded Linux |
+| Serial comms (UART, SPI, I2C)    | Networking (BLE, TCP/IP, MQTT) | JTAG/SWD debugging               |
+| Internet of Things (IoT)         | CMake, GCC, Clang              | Git, CI/CD, and shell scripting  |
 
 ## Experience
 
