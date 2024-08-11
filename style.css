@@ -46,6 +46,12 @@ h3 {
   justify-content: space-between;
 }
 
+#spacer {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
 p {
   margin: 0 0 0.5em;
   padding: 0;

@@ -1,11 +1,11 @@
 # Jonathan Hendrickson
 
 - <jonathan@jhendrickson.dev>
-- (484) 857-2557
-- Seattle, WA
 - [github.com/averagewagon](https://github.com/averagewagon)
+- [linkedin.com/in/jonathan-r-hendrickson](https://www.linkedin.com/in/jonathan-r-hendrickson/)
+- [jhendrickson.dev](https://jhendrickson.dev)
 
-Embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory, and safety-critical embedded applications.
+Seattle-based embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory, and safety-critical embedded applications.
 
 ## Skills
 
@@ -19,7 +19,7 @@ Embedded software engineer with experience developing microcontrollers, IoT solu
 
 ### <span>Amazon -- Software Development Engineer II</span> <span>Aug 2023 -- Present</span>
 
-Project Kuiper - Satellite Embedded Software
+<span id="spacer"><span>Project Kuiper - Satellite Embedded Software</span> <span>Redmond, WA</span></span>
 
 - Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux and RTOS
 - Contributed to CPU performance improvements to telemetry, commanding, and file transfer components
@@ -28,7 +28,7 @@ Project Kuiper - Satellite Embedded Software
 
 ### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Sept 2021 -- Aug 2023</span>
 
-FreeRTOS Maintainer
+<span id="spacer"><span>FreeRTOS Maintainer</span> <span>Seattle, WA</span></span>
 
 - Developed MISRA-compliant embedded C libraries for FreeRTOS such as MQTT, HTTP, and OTA updates
 - Wrote and shipped AWS IoT ExpressLink, a FreeRTOS hardware module exposing MQTT over UART commands
@@ -37,6 +37,8 @@ FreeRTOS Maintainer
 - Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
 
 ### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
+
+<span id="spacer"><span>Altspace VR and Microsoft Teams integrations</span> <span>Seattle, WA</span></span>
 
 - Developed custom behaviors with Node.js for AltspaceVR such as virtual tic-tac-toe and item-gifting
 - Achieved Microsoft Azure Fundamentals certification for understanding of cloud computing principles
