@@ -22,9 +22,9 @@ Seattle-based embedded software engineer with experience developing microcontrol
 <span id="spacer"><span>Project Kuiper - Satellite Embedded Software</span> <span>Redmond, WA</span></span>
 
 - Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux and RTOS
-- Contributed to CPU performance improvements to telemetry, commanding, and file transfer components
-- Implemented a cross-compilation build system using Clang and CMake for deploying signed images on top of Yocto
-- Developed a debugging CLI for config hot reloads, IPC message injection, and real-time diagnostics
+- Implemented CPU performance improvements to telemetry, commanding, and file transfer components
+- Wrote a cross-compilation build system using Clang and CMake for deploying signed images on top of Yocto
+- Created a debugging CLI for config hot reloads, IPC message injection/manipulation, and real-time diagnostics
 
 ### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Sept 2021 -- Aug 2023</span>
 
