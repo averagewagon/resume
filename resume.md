@@ -54,7 +54,7 @@ Seattle-based embedded software engineer with experience developing microcontrol
 <span id="spacer"><span>_[joni-on-micro.site](https://joni-on-micro.site)</span> <span></span>[GitHub Repository](https://github.com/averagewagon/joni-on-microsite)_</span>
 
 - Built an embedded web server on an ESP32-S3 using LittleFS and W5500 Ethernet to serve a static blog site
-- Developed a custom POSIX shell-based static site generator for bundling and efficient caching
+- Developed a custom POSIX shell-based static site generator for content bundling and compression
 
 ### <span>cEDH Decklist Database</span> <span>June 2020 -- Aug 2020</span>
 
