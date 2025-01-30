@@ -1,69 +1,72 @@
-# Jonathan Hendrickson
+# Jonathan "Joni" Hendrickson
 
-- <jonathan@jhendrickson.dev>
+- <joni@jhendrickson.dev>
 - [github.com/averagewagon](https://github.com/averagewagon)
 - [linkedin.com/in/jonathan-r-hendrickson](https://www.linkedin.com/in/jonathan-r-hendrickson/)
 - [jhendrickson.dev](https://jhendrickson.dev)
 
-Seattle-based embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering robust, high-performance, low-memory, and safety-critical embedded applications.
+Seattle-based embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering efficient, reliable, and maintainable embedded applications.
 
 ## Skills
 
-| COLUMN 1                         | COLUMN 2                       | COLUMN 3                         |
-| -------------------------------- | ------------------------------ | -------------------------------- |
-| C, Rust, Python, C++ programming | Microcontrollers (RISC-V, ARM) | FreeRTOS, Zephyr, Embedded Linux |
-| Serial comms (UART, SPI, I2C)    | Networking (BLE, TCP/IP, MQTT) | JTAG/SWD debugging               |
-| Internet of Things (IoT)         | CMake, GCC, Clang              | Git, CI/CD, and shell scripting  |
+| COLUMN 1                            | COLUMN 2                                 | COLUMN 3                                 |
+| ----------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| C, Rust, Python, C++ programming    | Microcontrollers (STM32, Espressif, RPi) | FreeRTOS, Embedded Linux                 |
+| Serial comms (UART, SPI, I2C, CAN)  | Networking (Ethernet, BLE, TCP/IP)       | JTAG/SWD, oscilloscopes, logic analyzers |
+| Sensors (weight, distance, cameras) | Build systems (GNU Make, CMake)          | Git, CI/CD, shell scripting              |
 
 ## Experience
 
-### <span>Amazon -- Software Development Engineer II</span> <span>Aug 2023 -- Present</span>
+### <span>Amazon -- Software Development Engineer II</span> <span>Seattle, WA</span>
 
-<span id="spacer"><span>Project Kuiper - Satellite Embedded Software</span> <span>Redmond, WA</span></span>
+<span id="spacer"><span>_Amazon Go / Just Walk Out -- MCU Sensor Firmware</span> <span>Oct 2024 -- Current_</span></span>
 
-- Developed satellite systems, libraries, and frameworks in Rust and C++ on Embedded Linux and RTOS
-- Implemented CPU performance improvements to telemetry, commanding, and file transfer components
-- Wrote a cross-compilation build system using Clang and CMake for deploying signed images on top of Yocto
-- Created a debugging CLI for config hot reloads, IPC message injection/manipulation, and real-time diagnostics
+- Developed embedded firmware for weight sensors and camera modules on ARM-based MCUs using FreeRTOS in C
+- Implemented video streaming optimizations to reduce CPU usage and improve throughput
+- Set up CI/CD pipelines and designed performance evaluation tests for automated benchmarking on lab hardware
 
-### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Sept 2021 -- Aug 2023</span>
+<span id="spacer"><span>_Project Kuiper -- Satellite Embedded Software</span> <span>Aug 2023 -- Oct 2024_</span></span>
 
-<span id="spacer"><span>FreeRTOS Maintainer</span> <span>Seattle, WA</span></span>
+- Maintained and expanded a framework for modular satellite applications in Rust and C++ on Embedded Linux
+- Improved IPC, telemetry, storage, and logging systems, porting key components from C++ to Rust
+- Enhanced fault tolerance mechanisms, including health monitoring, watchdogs, and time synchronization
+- Built tooling for deployment and debugging, including a debug CLI and ARM cross-compilation build system
 
-- Developed MISRA-compliant embedded C libraries for FreeRTOS such as MQTT, HTTP, and OTA updates
-- Wrote and shipped AWS IoT ExpressLink, a FreeRTOS hardware module exposing MQTT over UART commands
-- Cut network latency by 85%, resolved race conditions, and reduced memory usage by 27% in MQTT library
-- Wrote BLE GAP/GATT command set over UART and implemented a performant prototype on ExpressLink
-- Established GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest integration tests
+### <span>Amazon Web Services -- Software Development Engineer I/II</span> <span>Seattle, WA</span>
 
-### <span>Avanade -- Backend Developer Intern</span> <span>June 2021 -- Aug 2021</span>
+<span id="spacer"><span>_FreeRTOS Maintainer_</span> <span>Sept 2021 -- Aug 2023</span></span>
 
-<span id="spacer"><span>Altspace VR and Microsoft Teams integrations</span> <span>Seattle, WA</span></span>
+- Developed MISRA-compliant embedded C libraries for FreeRTOS, including provisioning, HTTP, and OTA updates
+- Wrote firmware for AWS IoT ExpressLink, implementing MQTT and BLE GAP/GATT communication over UART
+- Built a GitLab CI/CD pipeline for Linux/RPi testbeds, automating Pytest-based firmware integration tests
 
-- Developed custom behaviors with Node.js for AltspaceVR such as virtual tic-tac-toe and item-gifting
-- Achieved Microsoft Azure Fundamentals certification for understanding of cloud computing principles
-- Engaged in agile development methodologies, conducting daily stand-ups and sprint planning
-- Conducted code reviews and provided constructive feedback to team members
+### <span>Avanade -- Software Developer Intern</span> <span>Seattle, WA</span>
+
+<span id="spacer"><span>_Altspace VR and Microsoft Teams integrations</span> <span>June 2021 -- Aug 2021_</span></span>
+
+- Developed interactive AltspaceVR features in Node.js, including virtual games and in-app item systems
+- Participated in agile development, code reviews, and cloud-based deployments using Microsoft Azure
 
 ## Projects
 
-### <span>cEDH Decklist Database</span> <span>June 2020 -- Present</span>
+### <span>Joni on Microsite - Microcontroller-Based Web Server</span> <span>Dec 2024 -- Present</span>
 
-[GitHub Repository](https://github.com/averagewagon/cEDH-Decklist-Database)
+<span id="spacer"><span>_[joni-on-micro.site](https://joni-on-micro.site)</span> <span></span>[GitHub Repository](https://github.com/averagewagon/joni-on-microsite)_</span>
 
-- Developed authenticated CRUD application for viewing, submitting, and editing links to decks
-- Used AWS to power backend of decklist-editing interface (DynamoDB, Lambda, API Gateway, Cognito)
-- Created CI/CD in GitHub Actions to automatically validate and deploy website updates on every commit
+- Built an embedded web server on an ESP32-S3 using LittleFS and W5500 Ethernet to serve a static blog site
+- Developed a custom POSIX shell-based static site generator for bundling and efficient caching
+
+### <span>cEDH Decklist Database</span> <span>June 2020 -- Aug 2020</span>
+
+<span id="spacer"><span>_[cedh-decklist-database.com](https://cedh-decklist-database.com)</span> <span></span>[GitHub Repository](https://github.com/averagewagon/cEDH-Decklist-Database)_</span>
+
+- Built a website with an AWS-powered backend for browsing and submitting Magic: The Gathering decklists
+- Designed a submission system with authentication, data storage, and automated validation
 
 ## Education
-
-### <span>RISC-V Foundational Associate -- Certificate</span> <span>July 2024</span>
-
-- Comprehensive understanding of RISC-V architecture and instruction set
-- Focus on low-level programming and hardware-software integration
 
 ### <span>University of Washington Bothell -- BS Computer Science & Software Engineering</span> <span>Sept 2018 -- Aug 2021</span>
 
 - GPA: 3.77
-- Courses: Operating Systems, Hardware and Computer Organization, Embedded Development
+- Courses: Operating Systems, Hardware and Computer Organization, Data Structures and Algorithms
 - As a Teaching Assistant for CSE 180: taught data manipulation, visualization, and statistics

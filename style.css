@@ -9,8 +9,10 @@ body {
 }
 
 hr {
-  border: none; /* Remove the default border */
-  border-top: 1px solid black; /* Add a black top border */
+  border: none;
+  /* Remove the default border */
+  border-top: 1px solid black;
+  /* Add a black top border */
 }
 
 #resume {
@@ -60,31 +62,32 @@ p {
 ul {
   padding: 0;
   margin: 0 1.5em;
+  margin-bottom: 8px;
 }
 
 /* ul immediately after h1 = contact list */
-h1 + ul {
+h1+ul {
   text-align: center;
   margin: 0;
   padding: 0;
 }
 
-h1 + ul > li {
+h1+ul>li {
   display: inline;
   white-space: pre;
   list-style-type: none;
 }
 
-h1 + ul > li::after {
+h1+ul>li::after {
   content: "  \2022  ";
 }
 
-h1 + ul > li:last-child::after {
+h1+ul>li:last-child::after {
   content: "";
 }
 
 /* p immediately after contact list = summary */
-h1 + ul + p {
+h1+ul+p {
   margin: 1em 0;
 }
 
@@ -130,7 +133,7 @@ h1 + ul + p {
   margin: 0.5in 0.6in;
 }
 
-@media screen and (width <= 800px) {
+@media screen and (width <=800px) {
   body {
     font-size: 16pt;
     margin: 0;
@@ -151,26 +154,34 @@ h1 + ul + p {
 table {
   width: 95%;
   border-collapse: collapse;
-  margin: 0px auto; /* Center the table horizontally */
-  font-size: 0.9em; /* Set font size slightly lower than the body */
+  margin: 0px auto;
+  /* Center the table horizontally */
+  font-size: 0.9em;
+  /* Set font size slightly lower than the body */
 }
 
 table th,
 table td {
   padding: 6px;
-  text-align: left; /* Align text to the left within each cell */
-  width: 33.33%; /* Evenly distribute table cells */
-  border-bottom: 1px solid #ddd; /* Subtle grey border between rows */
+  text-align: left;
+  /* Align text to the left within each cell */
+  width: 33.33%;
+  /* Evenly distribute table cells */
+  border-bottom: 1px solid #ddd;
+  /* Subtle grey border between rows */
 }
 
 table th {
-  display: none; /* Hide the header row */
+  display: none;
+  /* Hide the header row */
 }
 
 table tr td:not(:last-child) {
-  border-right: 1px solid #ddd; /* Subtle grey border between columns */
+  border-right: 1px solid #ddd;
+  /* Subtle grey border between columns */
 }
 
 table tr:last-child td {
-  border-bottom: none; /* Remove bottom border on the last row */
+  border-bottom: none;
+  /* Remove bottom border on the last row */
 }
