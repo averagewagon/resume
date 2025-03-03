@@ -1,9 +1,9 @@
 # Jonathan "Joni" Hendrickson
 
-- <joni@jhendrickson.dev>
+- <hendrickson@joni.site>
 - [github.com/averagewagon](https://github.com/averagewagon)
 - [linkedin.com/in/jonathan-r-hendrickson](https://www.linkedin.com/in/jonathan-r-hendrickson/)
-- [jhendrickson.dev](https://jhendrickson.dev)
+- [joni-on-micro.site](https://joni-on-micro.site)
 
 Seattle-based embedded software engineer with experience developing microcontrollers, IoT solutions, and satellite firmware. Skilled at delivering efficient, reliable, and maintainable embedded applications.
 
@@ -19,10 +19,10 @@ Seattle-based embedded software engineer with experience developing microcontrol
 
 ### <span>Amazon -- Software Development Engineer II</span> <span>Seattle, WA</span>
 
-<span id="spacer"><span>_Amazon Go / Just Walk Out -- MCU Sensor Firmware</span> <span>Oct 2024 -- Current_</span></span>
+<span id="spacer"><span>_Amazon Go / Just Walk Out -- MCU Firmware</span> <span>Oct 2024 -- Current_</span></span>
 
-- Developed embedded firmware for weight sensors and camera modules on ARM-based MCUs using FreeRTOS in C
-- Implemented video streaming optimizations to reduce CPU usage and improve throughput
+- Developed hardware/firmware for gate motor control, weight sensors, and IoT on ARM-based MCUs with FreeRTOS
+- Implemented weight sensor streaming optimizations to reduce CPU usage and improve throughput
 - Set up CI/CD pipelines and designed performance evaluation tests for automated benchmarking on lab hardware
 
 <span id="spacer"><span>_Project Kuiper -- Satellite Embedded Software</span> <span>Aug 2023 -- Oct 2024_</span></span>
