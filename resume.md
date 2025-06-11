@@ -12,7 +12,7 @@ Seattle-based embedded software engineer with experience developing microcontrol
 | COLUMN 1                            | COLUMN 2                                 | COLUMN 3                                 |
 | ----------------------------------- | ---------------------------------------- | ---------------------------------------- |
 | C, Rust, Python, C++ programming    | Microcontrollers (STM32, Espressif, RPi) | FreeRTOS, Embedded Linux                 |
-| Serial comms (UART, SPI, I2C, CAN)  | Networking (Ethernet, BLE, TCP/IP)       | JTAG/SWD, oscilloscopes, logic analyzers |
+| Serial comms (UART, SPI, I2C, CAN)  | Networking (Ethernet, BLE, TCP/IP)       | Motors, Control Systems, PID   |
 | Sensors (weight, distance, cameras) | Build systems (GNU Make, CMake)          | Git, CI/CD, shell scripting              |
 
 ## Experience
@@ -22,7 +22,7 @@ Seattle-based embedded software engineer with experience developing microcontrol
 <span id="spacer"><span>_Amazon Go / Just Walk Out -- MCU Firmware</span> <span>Oct 2024 -- Current_</span></span>
 
 - Developed hardware/firmware for gate motor control, weight sensors, and IoT on ARM-based MCUs with FreeRTOS
-- Implemented weight sensor streaming optimizations to reduce CPU usage and improve throughput
+- Brought up a new motorized gate, writing firmware and tuning PID parameters for step-servos and BLDCs
 - Set up CI/CD pipelines and designed performance evaluation tests for automated benchmarking on lab hardware
 
 <span id="spacer"><span>_Project Kuiper -- Satellite Embedded Software</span> <span>Aug 2023 -- Oct 2024_</span></span>
